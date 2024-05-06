@@ -7,7 +7,7 @@
 // git status
 // git add "name of file"
 // git commit -m "Decription of what you did"
-// git push origin main
+// git push origin master
 
 
 using namespace std;
