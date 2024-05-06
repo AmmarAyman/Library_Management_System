@@ -1,6 +1,8 @@
 #ifndef BOOKMANAGER_H
 #define BOOKMANAGER_H
 #include <iostream>
+#include <string>
+#include <sstream>
 #include <fstream>
 
 using namespace std;
@@ -71,25 +73,27 @@ public:
 
 	}
 
-	void viewBooks(string department) { // Not Working
-		string path = "";
-		path += department;
-		path += ".txt";
-
+	void viewBooks(string department) {
+		string path = department + ".txt";
 		ifstream file(path);
+		if (!file.is_open()) {
+			cout << "Could not open file: " << path << endl;
+			return;
+		}
 
-		string title, author;
-		int id;
-
+		string line;
 		cout << "[ ";
-
-		while ((file >> title >> author >> id)) {       // !file.eof()
-			// file >> title >> author >> id;
+		while (getline(file, line)) {
+			stringstream ss(line);
+			string title, author;
+			int id;
+			getline(ss, title, '\t');
+			getline(ss, author, '\t');
+			ss >> id;
 			cout << title << " , ";
 		}
+		cout << " ]" << endl;
 		file.close();
-
-		cout << " ]";
 	}
 
 

@@ -15,7 +15,7 @@ using namespace std;
 
 int main() {
 
-	BookManager test1("Electronics", "THE DEAD", "AMMAR AYMAN", 235103);
+	BookManager test1("Electronics", "THE_DEAD", "AMMAR AYMAN", 235103);
 	test1.addBook();
 
 	BookManager test2("Electronics", "BRUH", "Sameh", 56187);
