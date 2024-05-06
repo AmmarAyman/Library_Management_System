@@ -26,8 +26,7 @@ int main() {
 
 	cout << "Added" << endl;
 
-	cout << "TEST";
-	cout << "Test2";
+	cout << "TEST" << endl;
 
 	test1.viewBooks("Electronics");
 

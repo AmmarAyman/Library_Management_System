@@ -1,11 +1,14 @@
 #ifndef BOOKMANAGER_H
 #define BOOKMANAGER_H
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 
 class BookManager {
 
 protected:
-
 	string department;
 	string title;
 	string author;
@@ -80,9 +83,8 @@ public:
 
 		cout << "[ ";
 
-		while ((!file.eof())
-		{
-			file >> title >> author >> id;
+		while ((file >> title >> author >> id)) {       // !file.eof()
+			// file >> title >> author >> id;
 			cout << title << " , ";
 		}
 		file.close();
