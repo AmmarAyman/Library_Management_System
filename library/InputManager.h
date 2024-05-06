@@ -25,7 +25,7 @@ public:
 
 
 	// How can this check for ID in main ?!?! [it must be an Object to be used in main]
-	bool checkID(int BookID) {        // Copied (viewBooks) and resued [we msh fahimha barod]
+	bool checkID(int BookID) {        // Copied (viewBooks) and reused [we msh fahimha bardo]
 		string path = department + ".txt";
 		ifstream file(path);
 		if (!file.is_open()) {
