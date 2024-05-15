@@ -17,7 +17,7 @@ int main() {
 
 	BookManager test ("Electronics", "The Suffering", "Ammar Ayman", 2148966);
 	
-	test.deleteBook(2148966);
+	
 
 
 	return 0;
