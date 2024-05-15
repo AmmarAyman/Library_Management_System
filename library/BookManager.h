@@ -101,6 +101,23 @@ public:
 		}
 	}
 
+	void viewBooks() {
+		sqlite3_stmt* stmt;
+		const char* sql = "SELECT * FROM Books";
+		if (sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) == SQLITE_OK) {
+			cout << "Listing all books:" << endl;
+			while (sqlite3_step(stmt) == SQLITE_ROW) {
+				cout << "Department: " << sqlite3_column_text(stmt, 0) << endl;
+				cout << "Title: " << sqlite3_column_text(stmt, 1) << endl;
+				cout << "Book ID: " << sqlite3_column_text(stmt, 2) << endl;
+				cout << "Author: " << sqlite3_column_text(stmt, 3) << endl << endl;
+			}
+			sqlite3_finalize(stmt);
+		}
+		else {
+			cerr << "Failed to retrieve books." << endl;
+		}
+	}
 
 
 };

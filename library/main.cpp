@@ -16,8 +16,10 @@ int main() {
 
 
 	BookManager test ("Electronics", "The Suffering", "Ammar Ayman", 2148966);
-	
-	
+
+	test.addBook("Electronics");
+
+	test.viewBooks();
 
 	return 0;
 }
