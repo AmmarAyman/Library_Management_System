@@ -12,10 +12,10 @@ private:
 	int bookID;
         
 public:
-        void issueRecord(){
-		
+	void issueRecord() {
 
 
+	}
 };
 
 #endif

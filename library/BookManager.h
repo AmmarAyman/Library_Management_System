@@ -1,9 +1,7 @@
 #ifndef BOOKMANAGER_H
 #define BOOKMANAGER_H
-#include <iostream>
+#include "sqlite3.h"
 #include <string>
-#include <sstream>
-#include <fstream>
 
 using namespace std;
 
@@ -16,6 +14,19 @@ protected:
 	string author;
 	int bookID;
 
+	sqlite3* db;
+
+	int executeQuery(const string& sql) {                  // Function For Applying SQLite Commands
+		char* errorMessage;
+		int rc = sqlite3_exec(db, sql.c_str(), NULL, NULL, &errorMessage);
+		if (rc != SQLITE_OK) {
+			cerr << "SQL error: " << errorMessage << endl;
+			sqlite3_free(errorMessage);
+		}
+		return rc;
+	}
+
+
 public:
 
 	BookManager() {
@@ -23,6 +34,10 @@ public:
 		title = "";
 		author = "";
 		bookID = 0;
+
+		int rc;
+		rc = sqlite3_open("books_data.db", &db);       // Opening The Data Base
+
 	}
 
 	BookManager(string dep, string tit, string auth, int ID) {
@@ -30,70 +45,53 @@ public:
 		title = tit;
 		author = auth;
 		bookID = ID;
+
+		int rc;
+		rc = sqlite3_open("books_data.db", &db);
 	}
 
-	void addBook() {
-		// Majors: Computer, Electrical, Civil, Electronics, Mechanical and Architecture
-
-		if (department == "Electronics") {
-			ofstream file("Electronics.txt", ios_base::app);
-			file << title << "\t" << author << "\t" << bookID << endl;
-			file.close();
-		}
-
-		else if (department == "Computer") {
-			ofstream file("Computer.txt", ios_base::app);
-			file << title << "\t" << author << "\t" << bookID << endl;
-			file.close();
-		}
-
-		else if (department == "Electrical") {
-			ofstream file("Electrical.txt", ios_base::app);
-			file << title << "\t" << author << "\t" << bookID << endl;
-			file.close();
-		}
-
-		else if (department == "Civil") {
-			ofstream file("Civil.txt", ios_base::app);
-			file << title << "\t" << author << "\t" << bookID << endl;
-			file.close();
-		}
-
-		else if (department == "Mechanical") {
-			ofstream file("Mechanical.txt", ios_base::app);
-			file << title << "\t" << author << "\t" << bookID << endl;
-			file.close();
-		}
-
-		else if (department == "Architecture") {
-			ofstream file("Architecture.txt", ios_base::app);
-			file << title << "\t" << author << "\t" << bookID << endl;
-			file.close();
-		}
-
+	~BookManager () {         // Closing the Data Base
+		sqlite3_close(db);
 	}
 
-	void viewBooks(string department) {          // Need More (Mesh Fahemha [We msh ader afhamha delwa2ty])
-		string path = department + ".txt";
-		ifstream file(path);
-		if (!file.is_open()) {
-			cout << "Could not open file: " << path << endl;
-			return;
+	void addBook(const string& department) {
+		string sql = "INSERT INTO Books (department, title, book_id, author) VALUES ('" + department + "', '" + title + "', " + to_string(bookID) + ", '" + author + "')";
+		int rc = executeQuery(sql);
+		if (rc == SQLITE_OK) {
+			cout << "Book added successfully!" << endl;
 		}
+	}
 
-		string line;
-		cout << "[ ";
-		while (getline(file, line)) {
-			stringstream ss(line);
-			string title, author;
-			int id;
-			getline(ss, title, '\t');
-			getline(ss, author, '\t');
-			ss >> id;
-			cout << title << " , ";
+	void deleteBook(int bookID) {
+		string sql = "DELETE FROM Books WHERE book_id = " + to_string(bookID);
+		int rc = executeQuery(sql);
+		if (rc == SQLITE_OK) {
+			cout << "Book deleted successfully!" << endl;
 		}
-		cout << " ]" << endl;
-		file.close();
+	}
+
+	void editBook(int bookID) {
+
+		string title, author, department;
+
+		cin.sync();
+		cout << "Type the New Title: ";
+		getline(cin, title);
+
+		cin.sync();
+		cout << "Type the New Author: ";
+		getline(cin, author);
+
+		cin.sync();
+		cout << "Type the New depatment: ";
+		getline(cin, department);
+
+
+		string sql = "UPDATE Books SET department = '" + department + "', title = '" + title + "', author = '" + author + "' WHERE book_id = " + to_string(bookID);
+		int rc = executeQuery(sql);
+		if (rc == SQLITE_OK) {
+			cout << "Book edited successfully!" << endl;
+		}
 	}
 
 

@@ -1,10 +1,11 @@
 #ifndef INPUTMANAGER_H
 #define INPUTMANAGER_H
-#include "BookManager.h"
 #include <iostream>
+#include "BookManager.h"
 
 using namespace std;
-
+/*
+* 
 class InputManager : public BookManager {
 
 public:
@@ -56,5 +57,7 @@ public:
 
 };
 
+
+*/
 
 #endif

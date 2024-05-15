@@ -24,6 +24,12 @@
     <ClCompile Include="InputManager.h">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="shell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StudentRecordManager.h">
@@ -32,5 +38,16 @@
     <ClInclude Include="BookManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="sqlite3.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3ext.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="books_data.db">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

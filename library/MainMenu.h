@@ -11,4 +11,5 @@ public :
 			<< " write the number of the command";
 	}
 };
-#endif // !MAINMENU_H
+
+#endif

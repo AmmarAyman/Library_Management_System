@@ -130,10 +130,17 @@
     <ClCompile Include="InputManager.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.h" />
+    <ClCompile Include="shell.c" />
+    <ClCompile Include="sqlite3.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BookManager.h" />
+    <ClInclude Include="sqlite3.h" />
+    <ClInclude Include="sqlite3ext.h" />
     <ClInclude Include="StudentRecordManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="books_data.db" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
