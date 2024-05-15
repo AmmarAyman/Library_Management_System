@@ -15,11 +15,15 @@ using namespace std;
 int main() {
 
 
-	BookManager test ("Electronics", "The Suffering", "Ammar Ayman", 2148966);
+	BookManager test ("computer", "program", "essam", 5962);
 
-	test.addBook("Electronics");
+	// test.addBook("computer");
+
+	test.editBook(5962);
 
 	test.viewBooks();
+
+	test.searchBook();
 
 	return 0;
 }

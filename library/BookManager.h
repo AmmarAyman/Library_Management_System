@@ -120,6 +120,61 @@ public:
 	}
 
 
+	void searchBook() {
+		int choice;
+		string input;
+		string sql;
+		sqlite3_stmt* stmt;
+
+		cout << "Choose your search criterion:" << endl;
+		cout << "1. By Title" << endl;
+		cout << "2. By Author" << endl;
+		cout << "3. By Book ID" << endl;
+		cout << "Enter your choice (1-3): ";
+		cin >> choice;
+		cin.ignore();
+
+		switch (choice) {
+		case 1:
+			cout << "Enter the title: ";
+			getline(cin, input);
+			sql = "SELECT * FROM Books WHERE title LIKE '%" + input + "%'";
+			break;
+		case 2:
+			cout << "Enter the author: ";
+			getline(cin, input);
+			sql = "SELECT * FROM Books WHERE author LIKE '%" + input + "%'";
+			break;
+		case 3:
+			cout << "Enter the book ID: ";
+			getline(cin, input);
+			sql = "SELECT * FROM Books WHERE book_id = " + input;
+			break;
+		default:
+			cout << "Invalid choice." << endl;
+			return;
+		}
+
+		if (sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, NULL) == SQLITE_OK) {
+			bool found = false;
+			while (sqlite3_step(stmt) == SQLITE_ROW) {
+				found = true;
+				cout << "Department: " << sqlite3_column_text(stmt, 0) << endl;
+				cout << "Title: " << sqlite3_column_text(stmt, 1) << endl;
+				cout << "Book ID: " << sqlite3_column_text(stmt, 2) << endl;
+				cout << "Author: " << sqlite3_column_text(stmt, 3) << endl << endl;
+			}
+			if (!found) {
+				cout << "No books found." << endl;
+			}
+			sqlite3_finalize(stmt);
+		}
+		else {
+			cerr << "Failed to search for books." << endl;
+		}
+	}
+
+
 };
 
 #endif
