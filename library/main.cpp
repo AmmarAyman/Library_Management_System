@@ -1,5 +1,6 @@
 #include <iostream>
 #include "BookManager.h"
+#include "MainMenu.h"
 
 // How to use GitHub
 // git status
@@ -15,15 +16,45 @@ using namespace std;
 int main() {
 
 
-	BookManager test ("computer", "program", "essam", 5962);
+	BookManager test;
+mainmenu test1;
 
-	// test.addBook("computer");
 
-	test.editBook(5962);
 
-	test.viewBooks();
+int n;
+int id;
+string type;
+test1.display_main_menu();
+cin >> n;
+if (n == 1) {
+	cout << " what type of books you want to add : ";
+	cin >> type;
+	test.addBook(type);
 
+
+}
+else if (n ==2){
+	cout << "write the id of the book you want to delete : ";
+	cin >> id;
+	test.deleteBook(id);
+
+}
+else if (n == 3) {
+	cout << " write the id of the book : ";
+	cin >> id;
+	test.editBook(id);
+
+}
+else if (n == 4) {
 	test.searchBook();
+
+}
+
+else{
+	test.viewBooks();
+}
+
+
 
 	return 0;
 }
