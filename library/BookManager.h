@@ -2,11 +2,12 @@
 #define BOOKMANAGER_H
 #include "sqlite3.h"
 #include <string>
+#include "InputManager.h"
 
 using namespace std;
 
 
-class BookManager {
+class BookManager : InputManager {
 
 protected:
 	string department;
@@ -61,7 +62,16 @@ public:
 		sqlite3_close(db);
 	}
 
-	void addBook(const string& department) {
+	void addBook() {
+
+		InputManager inp;
+		inp.getData();
+
+		department = inp.dep;
+		title = inp.tit;
+		author = inp.auth;
+		bookID = inp.id;
+
 		string sql = "INSERT INTO Books (department, title, book_id, author) VALUES ('" + department + "', '" + title + "', " + to_string(bookID) + ", '" + author + "')";
 		int rc = executeQuery(sql);
 		if (rc == SQLITE_OK) {
@@ -81,15 +91,15 @@ public:
 
 		string title, author, department;
 
-		cin.sync();
+		cin.ignore();
 		cout << "Type the New Title: ";
 		getline(cin, title);
 
-		cin.sync();
+		// cin.sync();
 		cout << "Type the New Author: ";
 		getline(cin, author);
 
-		cin.sync();
+		// cin.sync();
 		cout << "Type the New department: ";
 		getline(cin, department);
 

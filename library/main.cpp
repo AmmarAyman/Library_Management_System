@@ -17,42 +17,60 @@ int main() {
 
 
 	BookManager test;
-mainmenu test1;
+	mainmenu menu;
 
 
+	int n;
+	int id;
 
-int n;
-int id;
-string type;
-test1.display_main_menu();
-cin >> n;
-if (n == 1) {
-	cout << " what type of books you want to add : ";
-	cin >> type;
-	test.addBook(type);
+	while (true) {
 
+		menu.display_main_menu();
+		cout << "Type your Choice: ";
+		cin >> n;
+		if (n == 1) {
+			cout << "\n=============================\n";
+			test.addBook();
+			cout << "\n=============================\n";
+		}
+		else if (n == 2) {
+			cout << "write the id of the book you want to delete : ";
+			cin >> id;
+			cout << "\n=============================\n";
+			test.deleteBook(id);
+			cout << "\n=============================\n";
 
-}
-else if (n ==2){
-	cout << "write the id of the book you want to delete : ";
-	cin >> id;
-	test.deleteBook(id);
+		}
+		else if (n == 3) {
+			cout << " write the id of the book : ";
+			cin >> id;
+			cout << "\n=============================\n";
+			test.editBook(id);
+			cout << "\n=============================\n";
 
-}
-else if (n == 3) {
-	cout << " write the id of the book : ";
-	cin >> id;
-	test.editBook(id);
+		}
+		else if (n == 4) {
+			cout << "\n=============================\n";
+			test.searchBook();
+			cout << "\n=============================\n";
+		}
+		else if (n == 5) {
+			cout << "\n=============================\n";
+			continue;           // Till adding the issue book;
+			cout << "\n=============================\n";
 
-}
-else if (n == 4) {
-	test.searchBook();
+		}
+		else if (n == 6) {
+			cout << "\n=============================\n";
+			test.viewBooks();
+			cout << "\n=============================\n";
+		}
 
-}
+		else {
+			break;
+		}
 
-else{
-	test.viewBooks();
-}
+	}
 
 
 
