@@ -65,14 +65,24 @@ int main() {
 			test.viewBooks();
 			cout << "\n=============================\n";
 		}
+		else if (n == 7) {
+			cout << "\n=============================\n";
+			cout << " Type the ID: ";
+			cin >> id;
+			if (test.checkID(id) == 1) {
+				cout << "Book EXISTS !";
+			}
+			else {
+				cout << "Book Doesn't EXISTS !";
+			}
+			cout << "\n=============================\n";
+		}
 
 		else {
 			break;
 		}
 
 	}
-
-
 
 	return 0;
 }

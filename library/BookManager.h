@@ -7,7 +7,7 @@
 using namespace std;
 
 
-class BookManager : InputManager {
+class BookManager : public InputManager {
 
 protected:
 	string department;
@@ -136,7 +136,7 @@ public:
 		string sql;
 		sqlite3_stmt* stmt;
 
-		cout << "Choose your search criterion:" << endl;
+		cout << "Choose your search Option:" << endl;
 		cout << "1. By Title" << endl;
 		cout << "2. By Author" << endl;
 		cout << "3. By Book ID" << endl;
@@ -183,6 +183,7 @@ public:
 			cerr << "Failed to search for books." << endl;
 		}
 	}
+
 
 
 };
