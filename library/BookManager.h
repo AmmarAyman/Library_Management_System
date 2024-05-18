@@ -184,7 +184,9 @@ public:
 		}
 	}
 
-
+      bool issueBook(int bookID) {
+	checkID(bookID);
+}
 
 };
 
