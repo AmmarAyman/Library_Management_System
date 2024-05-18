@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class StudentRecordManager : public BookManager { // Not Complete
+class StudentRecordManager : public BookManager { 
 protected:
 	string studentName;
 	string department;
