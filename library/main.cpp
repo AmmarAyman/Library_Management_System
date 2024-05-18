@@ -56,7 +56,24 @@ int main() {
 		}
 		else if (n == 5) {
 			cout << "\n=============================\n";
-			continue;           // Till adding the issue book;
+			// continue;           // Till adding the issue book;
+
+StudentRecordManager student;
+char answer;
+cout << "Are you currently enrolled as a student? Answer with (y/n): ";
+cin >> answer;
+if (answer == 'y') {
+
+	cout << "Enter the ID of the book you want to issue: ";
+	cin >> id;
+
+	if (test.issueBook(id)) {
+		student.issuerecord();
+		cout << "Book issued successfully!" << endl;
+	}
+	else {
+		cout << "Failed to issue book. It might not be available." << endl;
+	}
 			cout << "\n=============================\n";
 
 		}
