@@ -1,6 +1,7 @@
 #include <iostream>
 #include "BookManager.h"
 #include "MainMenu.h"
+#include "StudentRecordManager.h"
 
 // How to use GitHub
 // git status
